@@ -1,6 +1,7 @@
 import 'package:firbase_crud_example/ui/add_screen.dart';
 import 'package:firbase_crud_example/ui/appbar.dart';
 import 'package:flutter/material.dart';
+import 'item_list.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -24,7 +25,7 @@ class _HomeScreenState extends State<HomeScreen> {
       body: const SafeArea(
         child: Padding(
           padding: EdgeInsets.only(left: 16, right: 16, bottom: 20),
-          // child: ,
+          child: ItemList() ,
         ),
       ),
       floatingActionButton: FloatingActionButton(
