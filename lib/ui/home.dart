@@ -1,3 +1,4 @@
+import 'package:firbase_crud_example/ui/add_screen.dart';
 import 'package:firbase_crud_example/ui/appbar.dart';
 import 'package:flutter/material.dart';
 
@@ -20,14 +21,17 @@ class _HomeScreenState extends State<HomeScreen> {
           sectionName: 'FireBaseCRUD',
         ),
       ),
-      body: SafeArea(
+      body: const SafeArea(
         child: Padding(
-          padding: EdgeInsets.only(left: 16,right: 16,bottom: 20),
+          padding: EdgeInsets.only(left: 16, right: 16, bottom: 20),
           // child: ,
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.of(context)
+              .push(MaterialPageRoute(builder: (context) => AddScreen()));
+        },
         backgroundColor: Colors.orangeAccent,
         child: const Icon(
           Icons.add,

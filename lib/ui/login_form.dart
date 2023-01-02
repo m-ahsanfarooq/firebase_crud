@@ -18,7 +18,7 @@ class LoginForm extends StatefulWidget {
 class _LoginFormState extends State<LoginForm> {
   final TextEditingController textEditingController = TextEditingController();
   final loginFormKey = GlobalKey<FormState>();
-
+String getId = '';
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -37,7 +37,10 @@ class _LoginFormState extends State<LoginForm> {
                     hintText: 'Enter User Id',
                     inputAction: TextInputAction.done,
                     lable: 'User ID',
-                    validator: (value) => Validator.validateUserId(value!),
+                    validator: (value) {
+                      Validator.validatorField(value!);
+                      getId = value;
+                    },
                   )
                 ],
               ),
@@ -58,7 +61,7 @@ class _LoginFormState extends State<LoginForm> {
                   onPressed: () {
                     widget.focusNode.unfocus();
                     if (loginFormKey.currentState!.validate()) {
-                      DataBase.userId = textEditingController.text;
+                      DataBase.userId = getId;
                       Navigator.of(context).pushReplacement(MaterialPageRoute(
                         builder: (context) => const HomeScreen(),
                       ));
