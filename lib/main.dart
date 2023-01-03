@@ -1,4 +1,4 @@
-import 'package:firbase_crud_example/ui/login.dart';
+import 'package:firebase_crud_example/ui/login.dart';
 import 'package:flutter/material.dart';
 
 void main() {

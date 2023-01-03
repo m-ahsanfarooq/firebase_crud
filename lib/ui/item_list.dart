@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import '../validator/database.dart';
+import 'edit_screen.dart';
 
 class ItemList extends StatelessWidget {
   const ItemList({Key? key}) : super(key: key);
@@ -13,9 +14,9 @@ class ItemList extends StatelessWidget {
         if(snapshot.hasError){
           return const Text('Something is went Wrong');
         }
-        else if(snapshot.hasData || snapshot.hasData != null){
+        else if(snapshot.hasData){
           return ListView.separated(
-            separatorBuilder: (context,index)=> SizedBox(height: 16,),
+            separatorBuilder: (context,index)=> const SizedBox(height: 16,),
               itemCount: snapshot.data!.docs.length,
             itemBuilder: (context,index){
               var noteInfo = snapshot.data!.docs[index].data() as Map<String,dynamic>;
@@ -32,7 +33,15 @@ class ItemList extends StatelessWidget {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8),
                   ),
-                  onTap: (){},
+                  onTap: (){
+                    Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => EditScreen(
+                        currentTitle: title,
+                        currentDescription: description,
+                        documentId: docId
+                      )
+                    ));
+                  },
                   title: Text(title,maxLines: 1,overflow: TextOverflow.ellipsis,),
                   subtitle: Text(description,maxLines: 1,overflow: TextOverflow.ellipsis,),
                 ),
